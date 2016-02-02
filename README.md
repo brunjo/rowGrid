@@ -1,5 +1,4 @@
 # rowGrid.js (no jQuery required)
-> This version of rowGrid.js is not fully documented yet. Check out the master branch of this repository to see the documented [jQuery version](https://github.com/brunjo/rowGrid.js).
 
 **rowGrid.js is a small, lightweight (~1kB gzipped) JavaScript plugin for placing images (or other items) in straight rows.**
 
@@ -10,6 +9,8 @@ Features:
  * responsive
  * infinite scrolling
  * support for all modern browsers and IE >= 9
+
+RowGrid.js is also available as jQuery plugin: https://github.com/brunjo/rowGrid.js
 
 [![Example Grid](http://brunjo.github.io/rowGrid.js/example.png)][2]
 
