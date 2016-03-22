@@ -24,7 +24,7 @@ At first rowGrid.js adjusts the margin between the items. If this is not enough 
 Real world example: https://www.pexels.com/
 
 ## Installation
-Just include row-grid.js
+Just include row-grid.js:
 ```HTML
 <script src="path/to/row-grid.min.js"></script>
 ```
@@ -55,9 +55,37 @@ rowGrid(container, {itemSelector: ".item", minMargin: 10, maxMargin: 25, firstIt
 ```
 
 ### Relayout
-You can relayout the complete grid with `rowGrid(container);`. If you appended items to the grid you can call `rowGrid(container, 'appended');` to arrange just the new items in the grid.
+You can relayout the complete grid with `rowGrid(container);`. If you appended items to the grid you can call `rowGrid(container, 'appended');` to arrange just the new items in the grid. This is useful if you want to implement endless scrolling.
 
-**TODO add more documentation**
+
+## Parameters
+
+The method `rowGrid()` expects two parameters. The first one have to be a DOM element and the second one a JavaScript object with options. The properties of the options object have no default values. This means all properties are required:
+
+#### itemSelector
+* **value:** ```string``` (CSS Selector)
+
+The selector have to reference to all grid items.
+#### minMargin
+* **value:** ```number``` or ```null```
+
+This is the minimal horizontal margin between the items. The margin is only between the items not between the first/last item and the container.
+#### maxMargin
+* **value:** ```number``` or ```null```
+
+This is the maximal horizontal margin between the items.
+#### resize
+* **value:** ```boolean```
+
+If ```resize``` is set to true the layout updates on resize events. This is useful for responsive websites.
+#### lastRowClass
+* **value:** ```string```
+
+The first item in the last row gets this class.
+#### firstItemClass
+* **value:** ```string``` or ```null```
+
+The first item in every row gets this class.
 
 
   [1]: https://twitter.com/3runjo "@3runjo"
