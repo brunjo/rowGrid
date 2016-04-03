@@ -11,6 +11,10 @@ var rowGrid = function(container, options) {
   } else {
     if (!options) {
       options = JSON.parse(container.getAttribute('data-row-grid'));
+    } else {
+      if (options.resize === undefined) options.resize = true;
+      if (options.minWidth === undefined) options.minWidth = 0;
+      if (options.lastRowClass === undefined) options.lastRowClass = 'last-row';
     }
 
     layout(container, options);
@@ -91,15 +95,20 @@ var rowGrid = function(container, options) {
           if (rowElemIndex === 0) {
             rowElems[rowElemIndex].className += ' ' + options.lastRowClass;
           }
-          rowElems[rowElemIndex].style.cssText =
-            'width: ' + itemAttrs[index + parseInt(rowElemIndex) - rowElems.length + 1].width + 'px;' +
-            'height: ' + itemAttrs[index + parseInt(rowElemIndex) - rowElems.length + 1].height + 'px;' +
-            'margin-right:' + ((rowElemIndex < rowElems.length - 1) ? options.minMargin + 'px' : 0);
+
+          var css = 'width: ' + itemAttrs[index + parseInt(rowElemIndex) - rowElems.length + 1].width + 'px;' +
+          'height: ' + itemAttrs[index + parseInt(rowElemIndex) - rowElems.length + 1].height + 'px;';
+
+          if (rowElemIndex < rowElems.length - 1) {
+            css += 'margin-right:' + options.minMargin + 'px';
+          }
+
+          rowElems[rowElemIndex].style.cssText = css;
         }
       }
 
       // check whether width of row is too high
-      if (rowWidth + options.maxMargin * (rowElems.length - 1) > containerWidth) {
+      if (rowWidth + options.maxMargin * (rowElems.length - 1) > containerWidth || window.innerWidth < options.minWidth) {
         var diff = rowWidth + options.maxMargin * (rowElems.length - 1) - containerWidth;
         var nrOfElems = rowElems.length;
 
@@ -130,14 +139,21 @@ var rowGrid = function(container, options) {
             widthDiff += 1 - newWidth % 1;
             newWidth = Math.ceil(newWidth);
           }
-          rowElem.style.cssText =
-            'width: ' + newWidth + 'px;' +
-            'height: ' + newHeight + 'px;' +
-            'margin-right: ' + ((rowElemIndex < rowElems.length - 1) ? rowMargin : 0) + 'px';
-          if (rowElemIndex === 0) {
+
+          var css = 'width: ' + newWidth + 'px;' +
+            'height: ' + newHeight + 'px;';
+
+          if (rowElemIndex < rowElems.length - 1) {
+            css += 'margin-right: ' + rowMargin + 'px';
+          }
+
+          rowElem.style.cssText = css;
+
+          if (rowElemIndex === 0 && !!options.firstItemClass) {
             rowElem.className += ' ' + options.firstItemClass;
           }
         }
+
         rowElems = [],
           rowWidth = 0;
       }

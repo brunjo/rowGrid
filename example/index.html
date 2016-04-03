@@ -5,17 +5,24 @@
   <title>rowGrid.js Example</title>
   <style>
     /* clearfix because of floats */
-    .container:before,
-    .container:after {
+    .container:before, .container:after {
         content: "";
         display: table;
     }
     .container:after {
         clear: both;
     }
+
     .item {
       float: left;
       margin-bottom: 15px;
+    }
+    @media (max-width: 499px) {
+      .item {
+        float: none;
+        margin-right: auto;
+        margin-left: auto;
+      }
     }
     .item img {
       max-width: 100%;
@@ -35,7 +42,7 @@
     document.addEventListener('DOMContentLoaded', function(){
       /* Start rowGrid.js */
       var container = document.getElementsByClassName('container')[0];
-      rowGrid(container, {itemSelector: ".item", minMargin: 10, maxMargin: 25, firstItemClass: "first-item", lastRowClass: 'last-row', resize: true});
+      rowGrid(container, {itemSelector: '.item', minMargin: 10, maxMargin: 25, firstItemClass: 'first-item', lastRowClass: 'last-row', resize: true, minWidth: 500});
     });
   </script>
 </head>

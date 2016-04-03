@@ -60,30 +60,45 @@ You can relayout the complete grid with `rowGrid(container);`. If you appended i
 
 ## Parameters
 
-The method `rowGrid()` expects two parameters. The first one have to be a DOM element and the second one a JavaScript object with options. The properties of the options object have no default values. This means all properties are required:
+The method `rowGrid()` expects two parameters. The first one has to be a DOM element and the second one a JavaScript object with options:
 
-#### itemSelector
+#### itemSelector (required)
 * **value:** ```string``` (CSS Selector)
 
 The selector have to reference to all grid items.
-#### minMargin
+#### minMargin (required)
 * **value:** ```number``` or ```null```
 
 This is the minimal horizontal margin between the items. The margin is only between the items not between the first/last item and the container.
-#### maxMargin
+#### maxMargin (required)
 * **value:** ```number``` or ```null```
 
 This is the maximal horizontal margin between the items.
 #### resize
 * **value:** ```boolean```
+* **default value:** ```true```
 
 If ```resize``` is set to true the layout updates on resize events. This is useful for responsive websites.
+
+#### minWidth
+* **value:** ```number```
+* **default value:** ```0```
+
+RowGrid.js only applies its grid system if the width of the window is greater than or equals to the specified value.
+
+The default value is `0`. This means the items always get arranged by rowGrid.js.
+
+Also check out the demo in the `example` directory to see this option in action.
+
 #### lastRowClass
 * **value:** ```string```
+* **default value:** ```last-row```
 
 The first item in the last row gets this class.
+
 #### firstItemClass
-* **value:** ```string``` or ```null```
+* **value:** ```string```
+* **default value:** ```undefined```
 
 The first item in every row gets this class.
 
