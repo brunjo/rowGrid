@@ -1,4 +1,4 @@
-var rowGrid = module.exports = function(container, options) {
+var rowGrid = function(container, options) {
   if (container === null || container === undefined) {
     return;
   }
@@ -160,7 +160,6 @@ var rowGrid = module.exports = function(container, options) {
     }
   }
 };
-
 
 if (typeof exports === 'object') {
   module.exports = rowGrid;
