@@ -160,3 +160,8 @@ var rowGrid = function(container, options) {
     }
   }
 };
+
+
+if (typeof exports === 'object') {
+  module.exports = rowGrid;
+}
