@@ -44,7 +44,8 @@ var rowGrid = function(container, options) {
     var rowWidth = 0,
       rowElems = [],
       items = Array.prototype.slice.call(items || container.querySelectorAll(options.itemSelector)),
-      itemsSize = items.length;
+      itemsSize = items.length
+      singleImagePerRow = !!window.matchMedia && !window.matchMedia('(min-width:' + options.minWidth + 'px)').matches;
 
     // read
     var containerStyle = getComputedStyle(container);
@@ -72,7 +73,6 @@ var rowGrid = function(container, options) {
         height: h
       };
     }
-    itemsSize = items.length;
 
     // write
     for (var index = 0; index < itemsSize; ++index) {
@@ -108,7 +108,7 @@ var rowGrid = function(container, options) {
       }
 
       // check whether width of row is too high
-      if (rowWidth + options.maxMargin * (rowElems.length - 1) > containerWidth || window.innerWidth < options.minWidth) {
+      if (rowWidth + options.maxMargin * (rowElems.length - 1) > containerWidth || singleImagePerRow) {
         var diff = rowWidth + options.maxMargin * (rowElems.length - 1) - containerWidth;
         var nrOfElems = rowElems.length;
 
