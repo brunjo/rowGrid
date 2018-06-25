@@ -12,20 +12,16 @@ var rowGrid = function(container, options) {
     if (!options) {
       options = JSON.parse(container.getAttribute('data-row-grid'));
     } else {
-      if (options.resize === undefined) options.resize = true;
       if (options.minWidth === undefined) options.minWidth = 0;
       if (options.lastRowClass === undefined) options.lastRowClass = 'last-row';
-    }
 
-    layout(container, options);
-
-    container.setAttribute('data-row-grid', JSON.stringify(options));
-
-    if (options.resize) {
+      container.setAttribute('data-row-grid', JSON.stringify(options));
       window.addEventListener('resize', function(event) {
         layout(container, options);
       });
     }
+
+    layout(container, options);
   }
 
   /* Get elem and all following siblings of elem */

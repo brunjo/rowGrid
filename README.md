@@ -51,7 +51,7 @@ HTML:
 JS:
 ```JS
 var container = document.getElementsByClassName('container')[0];
-rowGrid(container, {itemSelector: ".item", minMargin: 10, maxMargin: 25, firstItemClass: "first-item", lastRowClass: 'last-row', resize: true});
+rowGrid(container, {itemSelector: ".item", minMargin: 10, maxMargin: 25, firstItemClass: "first-item", lastRowClass: 'last-row'});
 ```
 
 ### Relayout
@@ -74,11 +74,6 @@ This is the minimal horizontal margin between the items. The margin is only betw
 * **value:** ```number``` or ```null```
 
 This is the maximal horizontal margin between the items.
-#### resize
-* **value:** ```boolean```
-* **default value:** ```true```
-
-If ```resize``` is set to true the layout updates on resize events. This is useful for responsive websites.
 
 #### minWidth
 * **value:** ```number```
