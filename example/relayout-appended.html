@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>rowGrid.js Example</title>
+  <style>
+    body {
+      overflow-y: scroll;
+    }    
+
+    /* clearfix because of floats */
+    .container:before,
+    .container:after {
+      content: "";
+      display: table;
+    }
+
+    .container:after {
+      clear: both;
+    }
+
+    .item {
+      float: left;
+      margin-bottom: 15px;
+    }
+
+    .item.invisible {
+      display: none;
+    }
+
+    @media (max-width: 499px) {
+      .item {
+        float: none;
+        margin-right: auto;
+        margin-left: auto;
+      }
+    }
+
+    .item img {
+      max-width: 100%;
+      max-height: 100%;
+      vertical-align: bottom;
+    }
+
+    .first-item {
+      clear: both;
+    }
+
+    /* remove margin bottom on last row */
+    .last-row,
+    .last-row~.item {
+      margin-bottom: 0;
+    }
+  </style>
+  <script src="../row-grid.js"></script>
+  <script>
+    var counter = 1;
+    var container;
+
+    document.addEventListener('DOMContentLoaded', function () {
+      container = document.getElementById('container');
+      
+      var addItemsButton = document.querySelector('#addItemsButton');
+
+      addItemsButton.addEventListener("click", function() {
+        addItems();
+        rowGrid(container, "appended");
+      });
+      
+      addItems();
+      
+      /* Start rowGrid.js */
+      rowGrid(container, { itemSelector: '.item:not(.invisible)', minMargin: 10, maxMargin: 25, firstItemClass: 'first-item', lastRowClass: 'last-row', minWidth: 500 });
+    });
+
+    /** Function to add sample images from the 'items' array on the page */
+    function addItems() {
+      for (var i = 0; i < items.length; i++) {
+        var item = items[i];
+        var itemEl = document.createElement('div');
+        
+        itemEl.className += item.itemClass;
+
+        var imgEl = document.createElement('img');
+        imgEl.src = 'http://lorempixel.com/' + item.width.toString() + '/' + item.height.toString() + '?' + counter.toString();
+
+        imgEl.setAttribute('width', item.width);
+        imgEl.setAttribute('height', item.height);
+
+        itemEl.insertAdjacentElement('afterbegin', imgEl);
+        container.insertAdjacentElement('beforeend', itemEl);
+
+        counter++;
+      }
+    };
+
+    const items = [
+      {
+        width: 220,
+        height: 200,
+        itemClass: "item invisible"
+      },
+      {
+        width: 180,
+        height: 200,
+        itemClass: "item"
+      },
+      {
+        width: 250,
+        height: 200,
+        itemClass: "item invisible"
+      },
+      {
+        width: 200,
+        height: 200,
+        itemClass: "item"
+      },
+      {
+        width: 190,
+        height: 200,
+        itemClass: "item invisible"
+      },
+      {
+        width: 260,
+        height: 200,
+        itemClass: "item invisible"
+      },
+      {
+        width: 220,
+        height: 200,
+        itemClass: "item invisible"
+      },
+      {
+        width: 220,
+        height: 200,
+        itemClass: "item invisible"
+      },
+      {
+        width: 190,
+        height: 200,
+        itemClass: "item invisible"
+      },
+      {
+        width: 260,
+        height: 200,
+        itemClass: "item"
+      },
+      {
+        width: 220,
+        height: 200,
+        itemClass: "item"
+      },
+      {
+        width: 220,
+        height: 200,
+        itemClass: "item invisible"
+      },
+      {
+        width: 170,
+        height: 200,
+        itemClass: "item"
+      },
+      {
+        width: 210,
+        height: 200,
+        itemClass: "item"
+      }
+    ];
+
+  </script>
+</head>
+
+<body>
+  <h1><a href="https://github.com/brunjo/rowGrid.js">rowGrid.js Example</a></h1>
+  <p>Click the add items button to load more items.</p>
+
+  <div id="container" class="container">      
+  </div>
+
+  <button style="padding: 1em; margin: 1em;" id="addItemsButton">Add items</button>
+  
+</body>
+
+</html>

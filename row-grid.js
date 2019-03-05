@@ -6,7 +6,7 @@ var rowGrid = function(container, options) {
   if (options === 'appended') {
     options = JSON.parse(container.getAttribute('data-row-grid'));
     var lastRow = container.getElementsByClassName(options.lastRowClass)[0];
-    var items = nextAll(lastRow);
+    var items = nextAll(lastRow, options.itemSelector);
     layout(container, options, items);
   } else {
     if (!options) {
@@ -25,14 +25,13 @@ var rowGrid = function(container, options) {
   }
 
   /* Get elem and all following siblings of elem */
-  function nextAll(elem) {
+  function nextAll(elem, selector) {
     var matched = [elem];
 
-    while ((elem = elem['nextSibling']) && elem.nodeType !== 9) {
-      if (elem.nodeType === 1) {
-        matched.push(elem);
-      }
+    while (elem = elem.nextElementSibling) {
+			if (matches(elem, selector)) matched.push(elem);
     }
+
     return matched;
   }
 
@@ -155,6 +154,13 @@ var rowGrid = function(container, options) {
       }
     }
   }
+
+  function matches(elem, selector) {
+		return (Element.prototype.matches
+			|| Element.prototype.msMatchesSelector
+			|| Element.prototype.webkitMatchesSelector)
+		.call(elem, selector);
+	}
 };
 
 if (typeof exports === 'object') {
