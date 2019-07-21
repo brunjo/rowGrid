@@ -29,7 +29,7 @@ var rowGrid = function(container, options) {
     var matched = [elem];
 
     while (elem = elem.nextElementSibling) {
-			if (matches(elem, selector)) matched.push(elem);
+      if (matches(elem, selector)) matched.push(elem);
     }
 
     return matched;
@@ -156,11 +156,11 @@ var rowGrid = function(container, options) {
   }
 
   function matches(elem, selector) {
-		return (Element.prototype.matches
-			|| Element.prototype.msMatchesSelector
-			|| Element.prototype.webkitMatchesSelector)
-		.call(elem, selector);
-	}
+    return (Element.prototype.matches
+      || Element.prototype.msMatchesSelector
+      || Element.prototype.webkitMatchesSelector)
+    .call(elem, selector);
+  }
 };
 
 if (typeof exports === 'object') {
